@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Basis Data - UBP Karawang</title>
+</head>
+<body>
+
+  <header id="header"></header>
+  <nav id="navbar"></nav>
+  <section id="content"></section>
+  <footer id="footer"></footer>
+
+  <script>
+    // === HEADER ===
+    const header = document.getElementById("header");
+    header.innerHTML = `
+      <h1>Blog Basis Data</h1>
+      <p>Universitas Buana Perjuangan Karawang</p>
+    `;
+    header.style.backgroundColor = "#007bff";
+    header.style.color = "white";
+    header.style.textAlign = "center";
+    header.style.padding = "20px";
+    header.style.fontFamily = "Arial, sans-serif";
+    header.style.margin = "0";
+
+    // === NAVBAR ===
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = `
+      <button id="btnPost1">Post 1</button>
+      <button id="btnPost2">Post 2</button>
+    `;
+    navbar.style.textAlign = "center";
+    navbar.style.marginTop = "10px";
+
+    const buttons = navbar.querySelectorAll("button");
+    buttons.forEach(btn => {
+      btn.style.backgroundColor = "#007bff";
+      btn.style.color = "white";
+      btn.style.border = "none";
+      btn.style.padding = "10px 20px";
+      btn.style.margin = "5px";
+      btn.style.borderRadius = "8px";
+      btn.style.cursor = "pointer";
+      btn.style.fontFamily = "Arial, sans-serif";
+      btn.style.transition = "0.3s";
+      btn.addEventListener("mouseover", () => btn.style.backgroundColor = "#0056b3");
+      btn.addEventListener("mouseout", () => btn.style.backgroundColor = "#007bff");
+    });
+
+    // === KONTEN ===
+    const content = document.getElementById("content");
+    content.style.maxWidth = "850px";
+    content.style.margin = "30px auto";
+    content.style.backgroundColor = "white";
+    content.style.padding = "30px";
+    content.style.borderRadius = "10px";
+    content.style.boxShadow = "0 3px 6px rgba(0,0,0,0.15)";
+    content.style.fontFamily = "Arial, sans-serif";
+    content.style.lineHeight = "1.6";
+
+    // === FUNGSI POST ===
+    function showPost1() {
+      content.innerHTML = `
+        <h2>Post 1: Apa itu Primary Key, Foreign Key, dan Candidate Key</h2>
+        <p><strong>Primary Key</strong> adalah atribut unik yang digunakan untuk mengidentifikasi setiap record dalam tabel. Tidak boleh bernilai <em>null</em> dan tidak boleh duplikat.</p>
+        <p><strong>Foreign Key</strong> adalah atribut yang menjadi penghubung antar tabel. Nilainya diambil dari primary key tabel lain.</p>
+        <p><strong>Candidate Key</strong> adalah semua atribut yang bisa menjadi primary key karena nilainya unik.</p>
+
+        <h3>Contoh Penerapan (masing-masing 5 contoh):</h3>
+        <ul>
+          <li><strong>Primary Key:</strong> NIM Mahasiswa, ID Dosen, ID Barang, ID Pegawai, ID Transaksi.</li>
+          <li><strong>Foreign Key:</strong> ID_Dosen di tabel Mahasiswa, ID_Kategori di tabel Barang, ID_Pelanggan di tabel Transaksi, ID_Penulis di tabel Buku, ID_Guru di tabel Siswa.</li>
+          <li><strong>Candidate Key:</strong> NIK Pegawai, Nomor HP, Email, Nomor Rekening, Nomor Induk Mahasiswa.</li>
+        </ul>
+
+        <p>Ketiga jenis key ini sangat penting dalam menjaga integritas data dan hubungan antar tabel di database relasional.</p>
+      `;
+    }
+
+    function showPost2() {
+      content.innerHTML = `
+        <h2>Post 2: Apa itu Relation pada ERD dan Mengapa Many-to-Many Tidak Baik Digunakan</h2>
+        <p><strong>Relation</strong> (relasi) dalam ERD menggambarkan hubungan antara dua atau lebih entitas. Misalnya, entitas <strong>Mahasiswa</strong> dan <strong>Mata Kuliah</strong> terhubung melalui relasi <em>mengambil</em>.</p>
+        <p>Jenis relasi antara entitas dalam ERD antara lain:</p>
+        <ul>
+          <li><strong>One to One (1:1)</strong> — Satu entitas hanya berhubungan dengan satu entitas lain.</li>
+          <li><strong>One to Many (1:N)</strong> — Satu entitas dapat berhubungan dengan banyak entitas lain.</li>
+          <li><strong>Many to Many (M:N)</strong> — Banyak entitas dapat berhubungan dengan banyak entitas lain.</li>
+        </ul>
+        <h3>Mengapa Many-to-Many Tidak Baik Digunakan?</h3>
+        <p>Relasi many-to-many sulit diterapkan langsung di tabel database karena dapat menyebabkan duplikasi data dan kesulitan dalam pengelolaan integritas referensial.</p>
+        <p>Oleh karena itu, relasi ini biasanya dipecah menjadi dua relasi one-to-many dengan menambahkan tabel penghubung (<em>junction table</em>).</p>
+        <p><strong>Contoh:</strong><br>
+        Mahasiswa dan Mata Kuliah → dibuat tabel penghubung <strong>KRS</strong> berisi <code>id_mahasiswa</code> dan <code>id_matakuliah</code>.</p>
+      `;
+    }
+
+    // === FOOTER ===
+    const footer = document.getElementById("footer");
+    footer.innerHTML = `
+      <p>Kunjungi Website Resmi Kampus:</p>
+      <a class="btn-logo" href="https://www.ubpkarawang.ac.id" target="_blank">
+        <img src="assets/logo-ubp.png" alt="UBP Karawang">
+      </a>
+      <p>&copy; 2025 Blog Basis Data - UBP Karawang</p>
+    `;
+    footer.style.backgroundColor = "#007bff";
+    footer.style.color = "white";
+    footer.style.textAlign = "center";
+    footer.style.padding = "25px";
+    footer.style.fontFamily = "Arial, sans-serif";
+
+    // === GAYA LOGO BULAT ===
+    const logo = footer.querySelector(".btn-logo img");
+    logo.style.width = "60px";
+    logo.style.height = "60px";
+    logo.style.borderRadius = "50%";
+    logo.style.border = "2px solid white";
+    logo.style.objectFit = "cover";
+    logo.style.transition = "transform 0.3s";
+    logo.style.cursor = "pointer";
+
+    logo.addEventListener("mouseover", () => logo.style.transform = "scale(1.1)");
+    logo.addEventListener("mouseout", () => logo.style.transform = "scale(1)");
+
+    // === AKSI BUTTON ===
+    document.getElementById("btnPost1").addEventListener("click", showPost1);
+    document.getElementById("btnPost2").addEventListener("click", showPost2);
+
+    // Default tampil Post 1
+    showPost1();
+  </script>
+
+</body>
+</html>
